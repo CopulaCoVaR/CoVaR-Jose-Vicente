@@ -1,0 +1,80 @@
+"","CDS_Brazil","CDS_Chile","CDS_China","CDS_Colombia","CDS_Indonesia","CDS_Korea","CDS_Malaysia","CDS_Mexico","CDS_Peru","CDS_SouthAfrica","CDS_Turkey","vix"
+"mu","-0.248763084399906","-0.0173122923594219","-0.00845956298195261","-0.350106676830458","-4.00844709448839e-09","-0.0185487090753655","-0.014439322290237","-0.0796907273793449","-0.295205888432073","-0.0493704790550998","-0.315517120126901","0.0253042536209924"
+"","0.159876816955242","0.00838279436733951","0.0137928596505726","0.165317938034928","2.73853478588107e-07","0.0195514989226118","0.0202592142919233","0.0525207530868632","0.13397015467954","0.043808091426769","0.234928337029934","0.0188273305762273"
+"ar1","0.0381693594498532","0.0402211255905612","Error in model.fit@fit$matcoef[""ar1"", 2] : subscript out of bounds
+","0.0386438361221563","Error in model.fit@fit$matcoef[""ar1"", 2] : subscript out of bounds
+","0.0391045370408466","0.0401543334099002","0.0376041053956323","0.0411277984128364","0.0384459554792492","0.0385164459279201","0.0336317437147395"
+"","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","0.038475704148475","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","0.0386338083461022","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","0.0351780914052667","Error in model.fit@fit$matcoef[""ar2"", 2] : subscript out of bounds
+","0.0355747426642557"
+"ar2","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","0.0365328465210174","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","0.0378518489287354","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar3"", 2] : subscript out of bounds
+"
+"","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","0.0343957246720503","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar4"", 2] : subscript out of bounds
+"
+"ar3","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 2] : subscript out of bounds
+"
+"",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"ar4","0.149631236041391","0.00480882969309797","0.0111285976661994","0.337781083341764","3.11375001669383e-07","0.00674572583486701","0.00650858958211037","0.0463335286683803","0.180467220232531","0.110284954358264","0.707045357543098","0.0103920058803537"
+"","0.0376967868255346","0.0644721843943048","0.160595164206382","0.0629848631760331","0.0785631322875754","0.0792104803748951","0.0770144109413134","0.060298157413098","0.0551891657192125","0.142500082213555","0.103299702157993","0.0377958145922073"
+"ar5","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+","Error in model.fit@fit$matcoef[""ar5"", 1] : subscript out of bounds
+"
+"","0.0595837802357252","0.0425124400911494","0.0510207083875069","0.043411643411784","0.0196021647955171","0.047901700409437","0.0529372980135529","0.0460809463691372","0.0603566716091522","0.0512448129169279","0.0541415576742498","0.0676547602975874"
+"omega","0.213311267806755","0.0131838074867433","0.0381032054343363","0.918380930416755","3.4903555797535e-16","0.0169797805765831","0.0185696929638179","0.0769578247434099","0.276024177986767","0.266497653699371","1.85522186800773","0.0340374960001734"
+"","0.689491216285907","0.380191828327849","0.390718323793969","0.534512973525825","0.0252404253774226","0.716781066033165","0.696320136516323","0.435753018417182","0.666714063860885","0.26917908461977","0.823988376944652","0.502227151225722"
+"alpha1","0.177870761973242","0.239795715748358","0.616888287639981","0.293248409174541","0.776161728876105","0.303233570276981","0.35436587629735","0.265906011743635","0.24243034224163","0.492289275836074","0.323675761409268","0.251371389963833"
+"",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"beta1","0.872050810447707","0.710283299609553","0.501484983938398","0.780126853701496","0.0747521083762548","0.757254913980614","0.702060193824001","0.806054186969937","0.829310002880037","0.673981358927247","0.778563007617003","0.856725529844346"
+"",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"gamma1","-0.0964913578952266","0.0979591065282235","-0.22780032073567","-0.146663409692234","0.271068786557015","-0.12170682253493","-0.109766976320596","-0.140380172188437","-0.138230846514212","-0.32148071907078","-0.234060588673108","-0.304813648893387"
+"",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"skew","1.138206321779","0.997805712769798","1.08947975114566","1.02900332998923","1.01404025967655","1.02235586814061","1.10451401104562","1.07939422696282","1.12663694929696","1.06531324785913","1.04471294312184","1.33257134054568"
+"",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"shape","4.92543505552013","3.53156459636484","3.31294126214665","4.01420361965499","2.2990885907204","4.38836942281723","4.32225933361777","3.7236758770491","4.72422417466572","2.85698419110426","4.64494955235099","3.68567859828542"
+"",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
