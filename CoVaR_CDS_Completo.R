@@ -301,15 +301,15 @@ if (0){
 if (1){
   Serie.2=c('VIX', 'EMBI')[2]
   if (Serie.2=='VIX') {
-    load("C:\\Users\\maico\\OneDrive - Universidad Nacional de Colombia\\BanRep\\Value at Risk\\Highdimensional CoVaR network connectedness\\Github-R\\Copula-CoVaR-\\Resultados\\VIX\\No_Ext_Reg\\CoVaR_data_vix_Pre_Crisis_2022-10-24")
-    load("C:\\Users\\maico\\OneDrive - Universidad Nacional de Colombia\\BanRep\\Value at Risk\\Highdimensional CoVaR network connectedness\\Github-R\\Copula-CoVaR-\\Resultados\\VIX\\No_Ext_Reg\\CoVaR_data_vix_Crisis_2022-10-24")
-    load("C:\\Users\\maico\\OneDrive - Universidad Nacional de Colombia\\BanRep\\Value at Risk\\Highdimensional CoVaR network connectedness\\Github-R\\Copula-CoVaR-\\Resultados\\VIX\\No_Ext_Reg\\CoVaR_data_vix_Post_Crisis_2022-10-24")
+    load("CoVaR_data_vix_Pre_Crisis_2022-10-24", verbose=TRUE)
+    load("CoVaR_data_vix_Crisis_2022-10-24", verbose=TRUE)
+    load("CoVaR_data_vix_Post_Crisis_2022-10-24", verbose=TRUE)
     
   } #Carga de datos VIX sin regresores externos.
   if (Serie.2=='EMBI'){
-    load('CoVaR_data_EMBI_Global_Pre_Crisis_2022-10-25')    
-    load('CoVaR_data_EMBI_Global_Crisis_2022-10-26')    
-    load('CoVaR_data_EMBI_Global_Post_Crisis_2022-10-26')    
+    load('CoVaR_data_EMBI_Global_Pre_Crisis_2022-10-25', verbose=TRUE)    
+    load('CoVaR_data_EMBI_Global_Crisis_2022-10-26', verbose=TRUE)    
+    load('CoVaR_data_EMBI_Global_Post_Crisis_2022-10-26', verbose=TRUE)    
     
   } #Carga de datos EMBI sin regresores externos.
   samp     = c('Pre_Crisis', 'Crisis', 'Post_Crisis')[3]
