@@ -253,16 +253,16 @@ if (0){
   } #Carga de datos VIX sin regresores externos.
   
   if (0) {
-    load('CoVaR_data_EMBI_Global_Pre_Crisis_2022-10-25')    
-    load('CoVaR_data_EMBI_Global_Crisis_2022-10-26')    
-    load('CoVaR_data_EMBI_Global_Post_Crisis_2022-10-26')    
+    load('CoVaR_data_EMBI_Global_Pre_Crisis_2022-10-25', verbose = TRUE)    
+    load('CoVaR_data_EMBI_Global_Crisis_2022-10-26', verbose = TRUE)    
+    load('CoVaR_data_EMBI_Global_Post_Crisis_2022-10-26', verbose = TRUE)    
     
   } #Carga de datos EMBI sin regresores externos.
   
   if (1) {
-    load('CoVaR_data_usfcon_Pre_Crisis_2022-11-07')    
-    load('CoVaR_data_usfcon_Crisis_2022-11-08')    
-    load('CoVaR_data_usfcon_Post_Crisis_2022-11-08')    
+    load('CoVaR_data_usfcon_Pre_Crisis_2022-11-07', verbose = TRUE)    
+    load('CoVaR_data_usfcon_Crisis_2022-11-08', verbose = TRUE)    
+    load('CoVaR_data_usfcon_Post_Crisis_2022-11-08', verbose = TRUE)    
     
   } #Carga de datos USFCON sin regresores externos.
   test     = c('ksboot', 'created.function')[1]
@@ -301,10 +301,11 @@ if (0){
 if (1){
   Serie.2=c('VIX', 'EMBI')[2]
   if (Serie.2=='VIX') {
-    load("CoVaR_data_vix_Pre_Crisis_2022-10-24", verbose=TRUE)
-    load("CoVaR_data_vix_Crisis_2022-10-24", verbose=TRUE)
-    load("CoVaR_data_vix_Post_Crisis_2022-10-24", verbose=TRUE)
-    
+    #<<<<<<< HEAD
+    load("CoVaR_data_vix_Pre_Crisis_2022-10-25", verbose=TRUE)
+    load("CoVaR_data_vix_Crisis_2022-10-25", verbose=TRUE)
+    load("CoVaR_data_vix_Post_Crisis_2022-10-25", verbose=TRUE)
+
   } #Carga de datos VIX sin regresores externos.
   if (Serie.2=='EMBI'){
     load('CoVaR_data_EMBI_Global_Pre_Crisis_2022-10-25', verbose=TRUE)    
@@ -340,15 +341,15 @@ if (1){
 if (1){
   serie2= c('VIX', 'EMBI')[1]
   if (serie2=='VIX') {
-    load("CoVaR_data_vix_Pre_Crisis_2022-10-25")
-    load("CoVaR_data_vix_Crisis_2022-10-25")
-    load("CoVaR_data_vix_Post_Crisis_2022-10-25")
+    load("CoVaR_data_vix_Pre_Crisis_2022-10-25", verbose=TRUE)
+    load("CoVaR_data_vix_Crisis_2022-10-25", verbose=TRUE)
+    load("CoVaR_data_vix_Post_Crisis_2022-10-25", verbose=TRUE)
     
   } #Carga de datos VIX sin regresores externos.
   if (serie2=='EMBI') {
-    load('CoVaR_data_EMBI_Global_Pre_Crisis_2022-10-25')    
-    load('CoVaR_data_EMBI_Global_Crisis_2022-10-26')    
-    load('CoVaR_data_EMBI_Global_Post_Crisis_2022-10-26')    
+    load('CoVaR_data_EMBI_Global_Pre_Crisis_2022-10-25', verbose=TRUE)    
+    load('CoVaR_data_EMBI_Global_Crisis_2022-10-26', verbose=TRUE)    
+    load('CoVaR_data_EMBI_Global_Post_Crisis_2022-10-26', verbose=TRUE)    
     
   } #Carga de datos EMBI sin regresores externos.
   if (1) {
@@ -375,20 +376,20 @@ if (1){
   shade = xts(shade, ichimoku::index(CoVaR_DATA$CoVaR))
   #Gráficas
   for (i in Series.1){
-    if(plot.class=='Up')  range=c(0,max(CoVaR_DATA$CoVaRUp[,i]))
-    if(plot.class=='Down')range=c(min(CoVaR_DATA$CoVaR[,i]),0)
-    if(plot.class=='Both')range=c(min(CoVaR_DATA$CoVaR[,i]),max(CoVaR_DATA$CoVaRUp[,i]))
+    if(plot.class=='Up')   range=c(0,max(CoVaR_DATA$CoVaRUp[,i]))
+    if(plot.class=='Down') range=c(min(CoVaR_DATA$CoVaR[,i]),0)
+    if(plot.class=='Both') range=c(min(CoVaR_DATA$CoVaR[,i]),max(CoVaR_DATA$CoVaRUp[,i]))
     pdf(file = paste0(Resultados,'/Graficas_CoVaR_',serie2,'_',i,'.pdf'), onefile=FALSE)
-    print(plot(if (plot.class=='Down'|plot.class=='Both'){
-      CoVaR_DATA$CoVaR[,i]
-    }else{
-      CoVaR_DATA$CoVaRUp[,i]
-    } ,type="l",col="red", grid.col = NA, 
-    ylim=range, xlab="Time", ylab="", lwd=1, main=titles[i],format.labels="%Y", major.ticks = 'years', 
-    yaxis.left=TRUE, yaxis.right=TRUE, lty='solid'))
-    if (plot.class=='Down'|plot.class=='Both') print(lines(CoVaR_DATA$VaR[,i],         col="black", lwd=1,lty='dashed'))
-    if (plot.class=='Both')                    print(lines(CoVaR_DATA$CoVaRUp[,i],     col="red",   lwd=1,lty='solid'))
-    if (plot.class=='Up'|plot.class=='Both')   print(lines(CoVaR_DATA$VaRUp[,i],       col="black", lwd=1,lty='dashed'))
+    print(plotxts(if (plot.class=='Down'|plot.class=='Both')
+                { CoVaR_DATA$CoVaR[,i]} else{
+                  CoVaR_DATA$CoVaRUp[,i] },
+          type="l",col="red", grid.col = NA, 
+          ylim=range, xlab="Time", ylab="", lwd=1, main=titles[i],format.labels="%Y", major.ticks = 'years', 
+          yaxis.left=TRUE, yaxis.right=TRUE, lty='solid', cex=1.20, cex.axis=0.8)) 
+          #, cex.main=2.5, cex.sub=1.5, cex.axis=1.5
+    if (plot.class=='Down'|plot.class=='Both') print(lines(CoVaR_DATA$VaR[,i],     col="black", lwd=1,lty='dashed'))
+    if (plot.class=='Both')                    print(lines(CoVaR_DATA$CoVaRUp[,i], col="red",   lwd=1,lty='solid'))
+    if (plot.class=='Up'|plot.class=='Both')   print(lines(CoVaR_DATA$VaRUp[,i],   col="black", lwd=1,lty='dashed'))
     print(lines(CoVaR_DATA$CoVaR$horizontal_line, col='darkgrey'))
     addEventLines(breaks, col=grey(0.7), lwd=1)
     addPolygon(shade[c('2007-07-31','2016-11-30')], col = grey(0.9), on = -1)
