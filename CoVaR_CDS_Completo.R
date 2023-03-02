@@ -247,8 +247,8 @@ if (1){
   
   if (1) {
     load("CoVaR_data_vix_Pre_Crisis_2023-02-27", verbose = TRUE)
-    load("CoVaR_data_vix_Crisis_2022-10-25", verbose = TRUE)
-    load("CoVaR_data_vix_Post_Crisis_2022-10-25", verbose = TRUE)
+    load("CoVaR_data_vix_Crisis_2023-02-28", verbose = TRUE)
+    load("CoVaR_data_vix_Post_Crisis_2023-03-02", verbose = TRUE)
     
   } #Carga de datos VIX sin regresores externos.
   
@@ -266,7 +266,7 @@ if (1){
     
   } #Carga de datos USFCON sin regresores externos.
   test     = c('ksboot', 'created.function')[1]
-  samp     = c('Pre_Crisis', 'Crisis', 'Post_Crisis')[2]
+  samp     = c('Pre_Crisis', 'Crisis', 'Post_Crisis')[3]
   
   if (1) {
     if (samp=='Pre_Crisis') sample = CoVaR_data_Pre_Crisis
