@@ -1,7 +1,7 @@
 # Preparación -------------------------------------------------------------
 #setwd("C:/Users/maico/OneDrive - Universidad Nacional de Colombia/BanRep/Value at Risk/Highdimensional CoVaR network connectedness/Github-R/Copula-CoVaR-")
 #setwd('C:\\Respaldo DLO\\Copula_CoVaR\\R')   #<<<<<--- Carpeta general
-setwd('/Users/lumelo/archivos/Copula_CoVaR/Github-R/CoVaR-Jose-Vicente')
+#setwd('/Users/lumelo/archivos/Copula_CoVaR/Github-R/CoVaR-Jose-Vicente')
 wd = getwd()                                # Carpeta de trabajo adaptable al proyecto, se modifica automáticamente en cada computador.
 # ----------------------
 Resultados <<- paste0(wd,'/Resultados')     #<<<<<--- Capeta de resultados qué depende deldirectorio de trabajo. 
@@ -12,7 +12,7 @@ Series.1     = c("CDS_Brazil", "CDS_Chile", "CDS_China", "CDS_Colombia", "CDS_In
                  "CDS_Mexico", "CDS_Peru", "CDS_SouthAfrica", "CDS_Turkey")  #<<<--- Columnas de series de análisis
 # ----------------------
 #Serie.2      = if (data.file=='CDS_Data_VIX.xlsx') 'vix' else 'usfcon'      #<<<--- Columna de serie de referencia.
-Serie.2      = c("usfcon", 'vix', 'EMBI_Global')[3]
+Serie.2      = c("usfcon", 'vix', 'EMBI_Global')[2]
 # ----------------------
 Sample.name  = c('Full_Sample', 'Pre_Crisis', 'Crisis', 'Post_Crisis')[4]    #<<<--- Periodo a estimar
 # ----------------------
@@ -20,10 +20,10 @@ Samples.date = list(pre.crisis  = c('2004-10-08', '2007-07-31'),
                     crisis      = c('2007-08-01', '2016-11-30'),  #<<<--- Lista para determinar las muestras. 
                     post.crisis = c('2016-12-01'))  
 # ----------------------
-estimate.copula = c(TRUE, FALSE)[2]
+estimate.copula = c(TRUE, FALSE)[1]
 if (Serie.2=='vix') {
   if (Sample.name=='Pre_Crisis')  copula.file = 'Cop_seleccionadas_vix_Pre_Crisis_2022-10-23'
-  if (Sample.name=='Crisis')      copula.file = 'Cop_seleccionadas_vix_Crisis_2022-10-23'
+  if (Sample.name=='Crisis')      copula.file = 'Cop_seleccionadas_vix_Crisis_2023-02-28'
   if (Sample.name=='Post_Crisis') copula.file = 'Cop_seleccionadas_vix_Post_Crisis_2022-10-23'
   
 }
@@ -222,14 +222,14 @@ if (Sample.name=='Pre_Crisis') {
   CoVaR_data_Pre_Crisis=CoVaR_DF(Data=Sample[[1]], Serie.1=Name.Series1, Serie.2=Name.Serie2, 
                                  copulas=copulas.Sel, alpha=0.05, beta=0.05, plot=TRUE, 
                                  COND=CoVaR.type, forecast.type=Forecast, refit.every=refit, 
-                                 ARMA.Order=ARMA.Order, external.regressors=ifelse(Ext.Reg==TRUE,EXT.REG[[1]], NULL))
+                                 ARMA.Order=ARMA.Order)
   save(CoVaR_data_Pre_Crisis, file=paste0('CoVaR_data_',Name.Serie2,'_', names(Sample),'_',today()))
 }
 if (Sample.name=='Crisis')     {
   CoVaR_data_Crisis=CoVaR_DF(Data=Sample[[1]], Serie.1=Name.Series1, Serie.2=Name.Serie2, 
                              copulas=copulas.Sel, alpha=0.05, beta=0.05, plot=TRUE, 
                              COND=CoVaR.type, forecast.type=Forecast, refit.every=refit, 
-                             ARMA.Order=ARMA.Order, external.regressors=ifelse(Ext.Reg==TRUE,EXT.REG[[1]], NULL))
+                             ARMA.Order=ARMA.Order)
   save(CoVaR_data_Crisis, file=paste0('CoVaR_data_',Name.Serie2,'_', names(Sample),'_',today()))
   
 }
@@ -243,12 +243,12 @@ if (Sample.name=='Post_Crisis'){
 # Post-Estimación ---------------------------------------------------------
 
 # Prueba KS
-if (0){
+if (1){
   
-  if (0) {
-    load("C:\\Users\\maico\\OneDrive - Universidad Nacional de Colombia\\BanRep\\Value at Risk\\Highdimensional CoVaR network connectedness\\Github-R\\Copula-CoVaR-\\Resultados\\VIX\\No_Ext_Reg\\CoVaR_data_vix_Pre_Crisis_2022-10-24")
-    load("C:\\Users\\maico\\OneDrive - Universidad Nacional de Colombia\\BanRep\\Value at Risk\\Highdimensional CoVaR network connectedness\\Github-R\\Copula-CoVaR-\\Resultados\\VIX\\No_Ext_Reg\\CoVaR_data_vix_Crisis_2022-10-24")
-    load("C:\\Users\\maico\\OneDrive - Universidad Nacional de Colombia\\BanRep\\Value at Risk\\Highdimensional CoVaR network connectedness\\Github-R\\Copula-CoVaR-\\Resultados\\VIX\\No_Ext_Reg\\CoVaR_data_vix_Post_Crisis_2022-10-24")
+  if (1) {
+    load("CoVaR_data_vix_Pre_Crisis_2023-02-27", verbose = TRUE)
+    load("CoVaR_data_vix_Crisis_2022-10-25", verbose = TRUE)
+    load("CoVaR_data_vix_Post_Crisis_2022-10-25", verbose = TRUE)
     
   } #Carga de datos VIX sin regresores externos.
   
@@ -259,14 +259,14 @@ if (0){
     
   } #Carga de datos EMBI sin regresores externos.
   
-  if (1) {
+  if (0) {
     load('CoVaR_data_usfcon_Pre_Crisis_2022-11-07', verbose = TRUE)    
     load('CoVaR_data_usfcon_Crisis_2022-11-08', verbose = TRUE)    
     load('CoVaR_data_usfcon_Post_Crisis_2022-11-08', verbose = TRUE)    
     
   } #Carga de datos USFCON sin regresores externos.
   test     = c('ksboot', 'created.function')[1]
-  samp     = c('Pre_Crisis', 'Crisis', 'Post_Crisis')[3]
+  samp     = c('Pre_Crisis', 'Crisis', 'Post_Crisis')[2]
   
   if (1) {
     if (samp=='Pre_Crisis') sample = CoVaR_data_Pre_Crisis
@@ -275,18 +275,16 @@ if (0){
   } # Arreglo para la muestra en función de samp
   
   n.rep    = 1000       
-  x        = sample$CoVaR
-  y        = sample$VaR
-  alt      = c("greater", "two.sided", "less")[1]
+  x        = sample$CoVaRUp
+  y        = sample$VaRUp
+  alt      = c("greater", "two.sided", "less")[3]
   P.values = matrix(NA, nrow=ncol(x), ncol=6, dimnames=list(colnames(x), c('VaR average', 'CoVaR average','SD-VaR', 'SD-CoVaR', 'Statistic','P-value')))
   
   for (i in 1:ncol(x)) {
-
-      Bootstrap.KS                = ksboot(x=as.matrix(x[,i]), y=as.matrix(y[,i]), alternative=alt)
-      P.values[i,'P-value']       = Bootstrap.KS$ksboot.pvalue 
-      KS.1                        = ks.test(x=as.matrix(x[,i]),y=as.matrix(y[,i]), alternative=alt)
-      P.values[i,'Statistic']     = KS.1$statistic
-    }
+    Bootstrap.KS                = ksboot(x=as.matrix(x[,i]), y=as.matrix(y[,i]), alternative=alt)
+    P.values[i,'P-value']       = Bootstrap.KS$ksboot.pvalue 
+    KS.1                        = ks.test(x=as.matrix(x[,i]),y=as.matrix(y[,i]), alternative=alt)
+    P.values[i,'Statistic']     = KS.1$statistic
     P.values[i,'CoVaR average'] = mean(x[,i])
     P.values[i,'VaR average']   = mean(y[,i])
     P.values[i,'SD-VaR']        = sd(y[,i])
@@ -298,7 +296,7 @@ if (0){
   if (samp=='Post_Crisis') write.csv(P.values, file=paste('KS_Test_','Post_Crisis','.csv'))
 } 
 # Graficación ECDF
-if (1){
+if (0){
   Serie.2=c('VIX', 'EMBI')[2]
   if (Serie.2=='VIX') {
     #<<<<<<< HEAD
@@ -338,7 +336,7 @@ if (1){
   }
 }
 # Graficación CoVaR
-if (1){
+if (0){
   serie2= c('VIX', 'EMBI')[1]
   if (serie2=='VIX') {
     load("CoVaR_data_vix_Pre_Crisis_2022-10-25", verbose=TRUE)
@@ -412,7 +410,7 @@ if (0){
                               alpha=seq(0.00000001, 0.99999999,0.05), beta=seq(0.00000001, 0.99999999,0.05), ARMA.Order=ARMA.Order, CoVaR.tail='Up')
 }
 # Garch individual
-if (1){
+if (0){
   sample=c('Full_Sample', 'Pre_Crisis', 'Crisis', 'Post_Crisis')[4] # Selección de la muestra.
   if (1) {
     Sample=list(Full_Sample=DATOS_WNA, Pre_Crisis=Pre_Crisis, Crisis=Crisis, Post_Crisis=Post_Crisis)
@@ -467,7 +465,7 @@ if (1){
 }
 # Copulas result
 Copulas    = matrix(NA,12,11, dimnames=list(rep(c('Type', 'par1', 'par2', 'AIC'),3),Series.1))
-if (1) {
+if (0) {
   samp = c('Full_Sample', 'Pre_Crisis', 'Crisis', 'Post_Crisis')[3]
   Sample  = list(Full_Sample=DATOS_WNA, Pre_Crisis=Pre_Crisis, Crisis=Crisis, Post_Crisis=Post_Crisis)[samp]
   Sample  = Sample[[1]]
