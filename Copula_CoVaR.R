@@ -90,13 +90,13 @@ CoVaR.Copula <- function(Serie.1='CDS_Brazil', Serie.2='WTI', Datos=G20_Crisis_W
   if(forecast.type == 'in sample'){
     model.Serie.1     = ugarchspec(variance.model=list(model="gjrGARCH", garchOrder=c(1,1)), 
                                    mean.model=list(armaOrder=ARMA.Order[Serie.1,]), distribution.model="sstd")
-    model.Serie.1.fit = ugarchfit(spec=model.Serie.1, data=Datos[,Serie.1])
+    model.Serie.1.fit = ugarchfit(spec=model.Serie.1, data=Datos[,Serie.1], solver = "hybrid")
     if (ARMA.Order[1] == 0 &  ARMA.Order[2] == 0) {
       forecast.Serie.1.mean  =  as.matrix(rep(coef(model.Serie.1.fit)['mu'], nrow(Datos),)) 
       forecast.Serie.1.sigma =  as.xts(sigma(model.Serie.1.fit))  
     } else {
       forecast.Serie.1.mean  =  Datos[,Serie.1] - residuals(model.Serie.1.fit)
-      forecast.Serie.1.sigma =  as.xts(sigma(model.Serie.1.fit))  
+      forecast.Serie.1.sigma =  sigma(model.Serie.1.fit)
     }
     
     VaR   = as.xts(forecast.Serie.1.mean + forecast.Serie.1.sigma*(rugarch::qdist(distribution='sstd', p=ALPHA,   shape=coef(model.Serie.1.fit)['shape'],skew=coef(model.Serie.1.fit)['skew'])))
@@ -284,14 +284,16 @@ CoVaR.Copula <- function(Serie.1='CDS_Brazil', Serie.2='WTI', Datos=G20_Crisis_W
   if (sum(is.na(DeltaCoVaRUp))!= 0)   DeltaCoVaRUp   = na.fill(DeltaCoVaRUp, 'extend')
   if (sum(is.na(DeltaCoVaRUp))!= 0)   CoVaRMedian    = na.fill(CoVaRMedian,  'extend')
   
-  if (forecast.type=='in sample') 
+  if (forecast.type=='in sample') {
      return(list(CoVaR=CoVaRDown, VaR=VaR, CoVaRUp=CoVaRUp, VaRUp=VaRUp, DeltaCoVaR=DeltaCoVaRDown, 
                 DeltaCoVaRUp=DeltaCoVaRUp, CoVaRMedian=CoVaRMedian, 
                 garch.serie.2=model.Serie.2.fit, Par1=par.Cop.1, Par2=par.Cop.2))
-  if (forecast.type=='rolling')
+  }
+  if (forecast.type=='rolling'){
      return(list(CoVaR=CoVaRDown, VaR=VaR, CoVaRUp=CoVaRUp, VaRUp=VaRUp, DeltaCoVaR=DeltaCoVaRDown, 
                   DeltaCoVaRUp=DeltaCoVaRUp, CoVaRMedian=CoVaRMedian, 
                  garch.serie.2=forecast.Serie.2, Par1=par.Cop.1, Par2=par.Cop.2))
+  }
 }
 
 
@@ -337,11 +339,19 @@ CoVaR_DF = function(Data, Serie.1=Name.Series1, Serie.2='WTI', copulas, alpha, b
   
   time.ini                      = Sys.time() 
   #--- Inicializacion de los objetos de salida de la funcion ---#
-  CoVaR.series                  = xts(matrix(0, nrow=nrow(Data[(window.size+1):nrow(Data),]) , 
-                                             ncol=length(Serie.1)), order.by=ichimoku::index(Data[(window.size+1):nrow(Data),])) 
-  colnames(CoVaR.series)        = Serie.1
-  VaR.series  = CoVaRUp.series  = VaRUp.series = DeltaCoVaR.series = DeltaCoVaRUp.series = CoVaRMedian.series = CoVaR.series 
-  
+  if (forecast.type=="rolling") {
+    CoVaR.series                  = xts(matrix(0, nrow=nrow(Data[(window.size+1):nrow(Data),]) , 
+                                               ncol=length(Serie.1)), order.by=ichimoku::index(Data[(window.size+1):nrow(Data),])) 
+    colnames(CoVaR.series)        = Serie.1
+    VaR.series  = CoVaRUp.series  = VaRUp.series = DeltaCoVaR.series = DeltaCoVaRUp.series = CoVaRMedian.series = CoVaR.series 
+    
+  } else{
+    CoVaR.series                  = xts(matrix(0, nrow=nrow(Data) , 
+                                               ncol=length(Serie.1)), order.by=ichimoku::index(Data)) 
+    colnames(CoVaR.series)        = Serie.1
+    VaR.series  = CoVaRUp.series  = VaRUp.series = DeltaCoVaR.series = DeltaCoVaRUp.series = CoVaRMedian.series = CoVaR.series 
+    
+  }  
   i0 = 0 
   for (i in Serie.1){
     #print(i)
